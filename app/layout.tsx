@@ -3,6 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { getSiteContent } from "@/lib/content-server";
 import "./globals.css";
+import "./admin/admin-visual.css";
 
 export const metadata: Metadata = {
   title: "Yayasan Pondok Pesantren Al Huda Plumbon",
