@@ -16,10 +16,18 @@ export type NewsItem = {
   date: string;
   category: string;
   excerpt: string;
+  imageUrl?: string;
+};
+
+export type GalleryItem = {
+  id: string;
+  title: string;
+  caption: string;
+  imageUrl: string;
 };
 
 export type SiteContent = {
-  brand: { name: string; shortName: string; tagline: string };
+  brand: { name: string; shortName: string; tagline: string; logoUrl: string };
   hero: {
     eyebrow: string;
     title: string;
@@ -28,12 +36,14 @@ export type SiteContent = {
     primaryCtaHref: string;
     secondaryCtaLabel: string;
     secondaryCtaHref: string;
+    imageUrl: string;
   };
   stats: { value: string; label: string }[];
   about: { title: string; body: string; values: string[] };
   units: Unit[];
   programs: Program[];
   news: NewsItem[];
+  gallery: GalleryItem[];
   contact: {
     address: string;
     phone: string;
@@ -51,16 +61,17 @@ export const defaultContent: SiteContent = {
     name: "Yayasan Pondok Pesantren Al Huda",
     shortName: "Al Huda",
     tagline: "Membentuk generasi berilmu, berakhlak, dan berdaya guna.",
+    logoUrl: "",
   },
   hero: {
     eyebrow: "Yayasan Pondok Pesantren Al Huda Plumbon",
     title: "Tumbuh dalam ilmu, kokoh dalam akhlak.",
-    description:
-      "Lembaga pendidikan Islam di Desa Pamijahan, Kecamatan Plumbon, Kabupaten Cirebon, Jawa Barat yang menghadirkan pendidikan terpadu berbasis pesantren.",
+    description: "Lembaga pendidikan Islam di Desa Pamijahan, Kecamatan Plumbon, Kabupaten Cirebon, Jawa Barat yang menghadirkan pendidikan terpadu berbasis pesantren.",
     primaryCtaLabel: "Kenal lebih dekat",
     primaryCtaHref: "/profil",
     secondaryCtaLabel: "Hubungi kami",
     secondaryCtaHref: "/kontak",
+    imageUrl: "",
   },
   stats: [
     { value: "1998", label: "Berdiri dan mengabdi" },
@@ -70,25 +81,12 @@ export const defaultContent: SiteContent = {
   ],
   about: {
     title: "Pendidikan yang menyatukan ilmu dan keteladanan",
-    body:
-      "Yayasan Pondok Pesantren Al Huda Plumbon hadir untuk mendampingi generasi melalui pendidikan Islam yang tertib, hangat, dan relevan. Kami mengembangkan lingkungan belajar yang memadukan pembinaan keagamaan, akademik, kemandirian, dan kepedulian sosial.",
+    body: "Yayasan Pondok Pesantren Al Huda Plumbon hadir untuk mendampingi generasi melalui pendidikan Islam yang tertib, hangat, dan relevan. Kami mengembangkan lingkungan belajar yang memadukan pembinaan keagamaan, akademik, kemandirian, dan kepedulian sosial.",
     values: ["Keislaman", "Keilmuan", "Kemandirian", "Akhlakul karimah"],
   },
   units: [
-    {
-      name: "SMP Boarding School Al Huda",
-      level: "Pendidikan menengah pertama",
-      description:
-        "Pendidikan tingkat SMP berbasis pesantren dengan pembinaan akademik, ibadah, dan karakter dalam lingkungan asrama.",
-      accreditation: "Akreditasi B",
-    },
-    {
-      name: "MI Al Huda Pamijahan",
-      level: "Pendidikan dasar",
-      description:
-        "Pendidikan dasar yang menanamkan kecintaan kepada ilmu, Al-Qur’an, adab, dan lingkungan sejak dini.",
-      accreditation: "Unit pendidikan yayasan",
-    },
+    { name: "SMP Boarding School Al Huda", level: "Pendidikan menengah pertama", description: "Pendidikan tingkat SMP berbasis pesantren dengan pembinaan akademik, ibadah, dan karakter dalam lingkungan asrama.", accreditation: "Akreditasi B" },
+    { name: "MI Al Huda Pamijahan", level: "Pendidikan dasar", description: "Pendidikan dasar yang menanamkan kecintaan kepada ilmu, Al-Qur’an, adab, dan lingkungan sejak dini.", accreditation: "Unit pendidikan yayasan" },
   ],
   programs: [
     { title: "Pembinaan Keagamaan", description: "Membiasakan ibadah, kajian, tahfiz, dan adab dalam keseharian santri.", icon: "01" },
@@ -96,10 +94,11 @@ export const defaultContent: SiteContent = {
     { title: "Kegiatan Santri", description: "Mendorong kreativitas, kebersamaan, olahraga, seni, dan kontribusi sosial.", icon: "03" },
   ],
   news: [
-    { title: "Menyambut generasi pembelajar di lingkungan Al Huda", date: "Informasi yayasan", category: "Yayasan", excerpt: "Ruang belajar yang tertib dan lingkungan yang mendukung menjadi bagian dari ikhtiar kami." },
-    { title: "Kegiatan santri dan program harian", date: "Kegiatan", category: "Santri", excerpt: "Ikuti informasi kegiatan dan program harian melalui kanal resmi Pondok Pesantren Al-Huda Pamijahan." },
-    { title: "Informasi penerimaan peserta didik baru", date: "Pendaftaran", category: "PPDB", excerpt: "Informasi pendaftaran dapat diperoleh melalui kontak resmi atau formulir yang disediakan." },
+    { title: "Menyambut generasi pembelajar di lingkungan Al Huda", date: "Informasi yayasan", category: "Yayasan", excerpt: "Ruang belajar yang tertib dan lingkungan yang mendukung menjadi bagian dari ikhtiar kami.", imageUrl: "" },
+    { title: "Kegiatan santri dan program harian", date: "Kegiatan", category: "Santri", excerpt: "Ikuti informasi kegiatan dan program harian melalui kanal resmi Pondok Pesantren Al-Huda Pamijahan.", imageUrl: "" },
+    { title: "Informasi penerimaan peserta didik baru", date: "Pendaftaran", category: "PPDB", excerpt: "Informasi pendaftaran dapat diperoleh melalui kontak resmi atau formulir yang disediakan.", imageUrl: "" },
   ],
+  gallery: [],
   contact: {
     address: "Jl. Surya Negara Blok Kijad RT.09 RW.02, Desa Pamijahan, Kecamatan Plumbon, Kabupaten Cirebon, Jawa Barat",
     phone: "Hubungi pengelola yayasan",
@@ -107,14 +106,26 @@ export const defaultContent: SiteContent = {
     mapUrl: "https://maps.google.com/?q=Pamijahan%20Plumbon%20Cirebon",
     whatsappUrl: "https://wa.me/62",
   },
-  social: {
-    instagram: "https://www.instagram.com/ponpes_alhudapamijahan/",
-    facebook: "",
-  },
-  donation: {
-    title: "Dukung ikhtiar pendidikan Al Huda",
-    description: "Partisipasi Anda membantu menghadirkan pendidikan, pembinaan, dan lingkungan belajar yang lebih baik bagi santri.",
-    url: "",
-  },
+  social: { instagram: "https://www.instagram.com/ponpes_alhudapamijahan/", facebook: "" },
+  donation: { title: "Dukung ikhtiar pendidikan Al Huda", description: "Partisipasi Anda membantu menghadirkan pendidikan, pembinaan, dan lingkungan belajar yang lebih baik bagi santri.", url: "" },
   ppdbUrl: "",
 };
+
+export function normalizeContent(value?: Partial<SiteContent> | null): SiteContent {
+  if (!value) return defaultContent;
+  return {
+    ...defaultContent,
+    ...value,
+    brand: { ...defaultContent.brand, ...(value.brand || {}) },
+    hero: { ...defaultContent.hero, ...(value.hero || {}) },
+    about: { ...defaultContent.about, ...(value.about || {}) },
+    contact: { ...defaultContent.contact, ...(value.contact || {}) },
+    social: { ...defaultContent.social, ...(value.social || {}) },
+    donation: { ...defaultContent.donation, ...(value.donation || {}) },
+    stats: value.stats || defaultContent.stats,
+    units: value.units || defaultContent.units,
+    programs: value.programs || defaultContent.programs,
+    news: (value.news || defaultContent.news).map((item) => ({ ...item, imageUrl: item.imageUrl || "" })),
+    gallery: value.gallery || [],
+  };
+}
